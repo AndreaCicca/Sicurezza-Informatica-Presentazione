@@ -1,0 +1,49 @@
+name: Compila LaTeX e crea PDF e rilascio
+
+on:
+  push:
+    branches:
+      - main  
+jobs:
+  build_latex_and_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pulisci file temporanei
+        run: rm -f *.aux *.toc *.lof *.lot
+        working-directory: ${{ github.workspace }}
+
+      - name: Checkout del codice sorgente
+        uses: actions/checkout@v4
+
+      - name: Compila il documento LaTeX
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: main.tex
+          compiler: lualatex
+          args: >
+            -lualatex
+            -latexoption=-file-line-error
+            -latexoption=-interaction=nonstopmode
+            -latexoption=-shell-escape
+            -latexoption=-synctex=1
+            -shell-escape
+        
+      - name: Seconda compilazione
+        uses: dante-ev/latex-action@latest
+        with:
+          root_file: main.tex
+          compiler: lualatex
+          args: >
+            -lualatex
+            -latexoption=-file-line-error
+            -latexoption=-interaction=nonstopmode
+            -latexoption=-shell-escape
+            -latexoption=-synctex=1
+            -shell-escape
+
+      - name: Carica PDF come artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PDF_output
+          path: main.pdf
