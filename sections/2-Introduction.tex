@@ -62,11 +62,11 @@ Dopo un periodo di pressione, tramite l'utilizzo di \textbf{numerevoli account f
 \end{frame}
 
 \begin{frame}
-    \frametitle{Come Funziona la Vulnerabilità P2}
+    \frametitle{Come Funziona la Vulnerabilità}
     \begin{itemize}
-        \item La patch dormiente ha il compito di sostituire la funzione RSA\_public\_decrypt di OpenSSH con una versione malevola.
-        \item OpenSSH normalmente non carica liblzma, ma una patch comune delle distribuzioni linux fa sì che venga caricata libsystemd, che a sua volta carica lzma.
-        \item Una versione modificata di build-to-host.m4 nel tar file di rilascio estrae uno script che esegue l'iniezione nel liblzma.
+        \item La patch dormiente ha il compito di sostituire la funzione \textbf{RSA\_public\_decrypt} di OpenSSH con una versione malevola.
+        \item OpenSSH normalmente non carica liblzma, ma \textbf{una patch comune delle distribuzioni linux fa sì che venga caricata libsystemd}, che a sua volta carica liblzma.
+        \item Una versione modificata di build-to-host.m4, all'interno della release uficiale della libreria, estrae uno script che esegue l'iniezione malevola.
     \end{itemize}
 \end{frame}
 
