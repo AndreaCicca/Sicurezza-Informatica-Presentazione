@@ -1,4 +1,3 @@
-
 \section{XZ Utils backdoor} % Sections are added in order to organize your presentation into discrete blocks, all sections and subsections are automatically output to the table of contents as an overview of the talk but NOT output in the presentation as separate slides
 
 %------------------------------------------------
@@ -61,15 +60,6 @@ La backdoor XZ Utils è stata il culmine di circa \textbf{tre anni di sforzi} da
 
 Dopo un periodo di pressione, tramite l'utilizzo di \textbf{numerevoli account fantocci}, sul fondatore e manutentore del progetto, Jia Tan ha ottenuto la posizione di co-manutentore degli XZ Utils ed è stato in grado di approvare la versione 5.6.X della libreria contenente il malware.
 
-\end{frame}
-
-\begin{frame}
-    \frametitle{Come Funziona la Vulnerabilità}
-    \begin{itemize}
-        \item La patch dormiente ha il compito di sostituire la funzione \textbf{RSA\_public\_decrypt} di OpenSSH con una versione malevola.
-        \item OpenSSH normalmente non carica liblzma, ma \textbf{una patch comune delle distribuzioni linux fa sì che venga caricata libsystemd}, che a sua volta carica liblzma.
-        \item Una versione modificata di build-to-host.m4, all'interno della release uficiale della libreria, estrae uno script che esegue l'iniezione malevola.
-    \end{itemize}
 \end{frame}
 
 \begin{frame}
